@@ -4,15 +4,15 @@ fs.readFile('./sp.txt', 'utf8', (err, data) => {
     console.error('Error al leer el archivo:', err);
     return;
   }
-  const tokens = '.,;!@=()*_:"="\r\n'
+  const tokens = '.,;!@=()*_:"="\r\n '
   let palabra = ''
   const resultado = [];
 
 data.split('').forEach((caracter) => {
     if (tokens.includes(caracter)) {
-        if (palabra !== "") {
+        if (palabra !== " ") {
             resultado.push(palabra);
-            palabra = "";
+            palabra = " ";
         }
         resultado.push(caracter);
     } else {
@@ -20,7 +20,7 @@ data.split('').forEach((caracter) => {
     }
 });
 
-if (palabra !== "") {
+if (palabra !== " ") {
     resultado.push(palabra);
 }
 
