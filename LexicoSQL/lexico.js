@@ -1,24 +1,23 @@
-// Importa el módulo 'fs' para trabajar con el sistema de archivos
+
 const fs = require('fs');
 
-// Bloque de lectura y tokenización del archivo 'sp.txt'
 fs.readFile('./sp.txt', 'utf8', (err, data) => {
-  // Manejo de errores en la lectura del archivo
+
   if (err) {
     console.error('Error al leer el archivo:', err);
     return;
   }
 
-  // Define los caracteres que se utilizarán como tokens
-  const tokens = '\'\n\r*@:,;=.() ';
-  // Inicializa variables para procesamiento
+
+  const caracteres = [';', ':', "'", '=', '(', ')', '"', '*', '.', ' ', '@', '[', ']', '|', '\n', '\r'];
+  
   let palabra = '';
   let resultado = [];
 
-  // Itera sobre cada carácter en el archivo
+
   for (let i = 0; i < data.length; i++) {
     let caracter = data[i];
-    // Si el carácter es un token, guarda la palabra y el token en el resultado
+
     if (tokens.includes(caracter)) {
         if (palabra !== "") {
             resultado.push(palabra);
